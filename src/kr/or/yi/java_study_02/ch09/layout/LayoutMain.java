@@ -6,19 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
 
 public class LayoutMain extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JButton Flowlayout;
+	private JButton btnFlowlayout;
+	private JButton btnBorderLayout;
 
 	/**
 	 * Launch the application.
@@ -43,7 +40,7 @@ public class LayoutMain extends JFrame implements ActionListener {
 		initialize();
 	}
 	private void initialize() {
-		setTitle("배치레이아웃예제");
+		setTitle("배치레이아웃 해제");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,10 +48,29 @@ public class LayoutMain extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		Flowlayout = new JButton((String) null);
-		contentPane.add(Flowlayout);
+		btnFlowlayout = new JButton("Flowlayout");
+		btnFlowlayout.addActionListener(this);
+		contentPane.add(btnFlowlayout);
+		
+		btnBorderLayout = new JButton("BorderLayout");
+		btnBorderLayout.addActionListener(this);
+		contentPane.add(btnBorderLayout);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnBorderLayout) {
+			btnBorderLayoutActionPerformed(e);
+		}
+		if (e.getSource() == btnFlowlayout) {
+			btnFlowlayoutActionPerformed(e);
+		}
+	}
+	protected void btnFlowlayoutActionPerformed(ActionEvent e) {
+		FlowLayoutEx frame = new FlowLayoutEx();
+		frame.setVisible(true);
+	}
+	protected void btnBorderLayoutActionPerformed(ActionEvent e) {
+		BorderLayoutEx frame = new BorderLayoutEx();
+		frame.setVisible(true);
 	}
 }

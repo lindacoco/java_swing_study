@@ -1,4 +1,4 @@
-package java_swing_study.ch09;
+package kr.or.yi.java_study_02.ch09.layout;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
