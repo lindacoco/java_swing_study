@@ -1,20 +1,20 @@
 package kr.or.yi.java_study_02.ch09.layout;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class LayoutMain extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JButton btnFlowlayout;
+	private JButton btnFlowLayout;
 	private JButton btnBorderLayout;
 
 	/**
@@ -40,7 +40,7 @@ public class LayoutMain extends JFrame implements ActionListener {
 		initialize();
 	}
 	private void initialize() {
-		setTitle("배치레이아웃 해제");
+		setTitle("배치레이아웃예제");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -48,9 +48,9 @@ public class LayoutMain extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		btnFlowlayout = new JButton("Flowlayout");
-		btnFlowlayout.addActionListener(this);
-		contentPane.add(btnFlowlayout);
+		btnFlowLayout = new JButton("FlowLayout");
+		btnFlowLayout.addActionListener(this);
+		contentPane.add(btnFlowLayout);
 		
 		btnBorderLayout = new JButton("BorderLayout");
 		btnBorderLayout.addActionListener(this);
@@ -61,11 +61,11 @@ public class LayoutMain extends JFrame implements ActionListener {
 		if (e.getSource() == btnBorderLayout) {
 			btnBorderLayoutActionPerformed(e);
 		}
-		if (e.getSource() == btnFlowlayout) {
-			btnFlowlayoutActionPerformed(e);
+		if (e.getSource() == btnFlowLayout) {
+			btnFlowLayoutActionPerformed(e);
 		}
 	}
-	protected void btnFlowlayoutActionPerformed(ActionEvent e) {
+	protected void btnFlowLayoutActionPerformed(ActionEvent e) {
 		FlowLayoutEx frame = new FlowLayoutEx();
 		frame.setVisible(true);
 	}
