@@ -4,9 +4,13 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -111,10 +115,21 @@ public class LayoutMain extends JFrame implements ActionListener {
 		
 		btnNewButton_4 = new JButton("8번");
 		btnNewButton_4.addActionListener(this);
+		btnNewButton_4.addMouseListener(new MouseAdapter() {
+		   @Override
+		   public void mouseClicked(MouseEvent e) {
+			   System.out.println(e.getButton() + ": " +e.getClickCount());
+		   }
+		});
+		
 		pRight.add(btnNewButton_4);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+	//	JOptionPane.showMessageDialog(null, e.getSource());
+		System.out.println(e.getActionCommand());
+		System.out.println(e.getSource());
+		
 		if (e.getSource() == btnNewButton_4) {
 			btnNewButton_4ActionPerformed(e);
 		}
