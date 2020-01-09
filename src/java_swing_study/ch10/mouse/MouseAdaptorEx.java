@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -41,6 +42,59 @@ public class MouseAdaptorEx extends JFrame {
 			
 			
 		});
+		
+		
+		contentPane.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.printf("%s %n","mouseClicked");
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.printf("%s %n","mouseReleased");
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.printf("%s %n","mouseEntered");
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.printf("%s %n","mouseExited");
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				System.out.printf("%s %n","mouseDragged");
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				System.out.printf("%s %n","mouseMoved");
+			}
+			
+			
+		});
+		
+		
+		contentPane.addMouseMotionListener(new MouseMotionListener() {
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				System.out.printf("%s %n","mouseMoved");
+				
+			}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				System.out.printf("%s %n","mouseDragged");
+				
+			}
+		});
+		
 		
 		lbl = new JLabel("New label");
 		lbl.setBounds(172, 95, 57, 15);

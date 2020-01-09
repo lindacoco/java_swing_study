@@ -24,6 +24,8 @@ public class YourEventListnerEx extends JFrame implements ActionListener {
 	private JPanel panel_3;
 	private JButton btn01;
 	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
 
 	/**
 	 * Launch the application.
@@ -49,7 +51,7 @@ public class YourEventListnerEx extends JFrame implements ActionListener {
 	}
 	private void initialize() {
 		setTitle("리스너작성실습");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(10, 20, 10, 20));
@@ -77,9 +79,38 @@ public class YourEventListnerEx extends JFrame implements ActionListener {
 		panel_2.setBorder(new TitledBorder(null, "\uB0B4\uBD80\uD074\uB798\uC2A4", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panel_2);
 		
+		btnNewButton_1 = new JButton("내부클래스버튼");
+		btnNewButton_1.addActionListener(new myAction());
+		panel_2.add(btnNewButton_1);
+		
 		panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "\uC775\uBA85\uD074\uB798\uC2A4", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panel_3);
+		
+		btnNewButton_2 = new JButton("익명클래스로");
+		panel_3.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(contentPane.getBackground() ==Color.YELLOW) {
+				contentPane.setBackground(Color.red);
+				}else {
+					contentPane.setBackground(Color.yellow);
+				}
+			}
+		});
+	}
+	
+	private class myAction implements ActionListener{
+	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(contentPane.getBackground() ==Color.YELLOW) {
+				contentPane.setBackground(Color.red);
+				}else {
+					contentPane.setBackground(Color.yellow);
+				}
+		}
 	}
 
 	public void actionPerformed(ActionEvent e) {
