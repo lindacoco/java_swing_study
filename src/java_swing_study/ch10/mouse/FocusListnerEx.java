@@ -41,6 +41,7 @@ public class FocusListnerEx extends JFrame implements ActionListener {
 	private JLabel lblconfirm;
 	private JButton btnOk;
 	private JButton btnCancel;
+	private JButton btnNewButton;
 
 	public FocusListnerEx() {
 		initialize();
@@ -210,6 +211,10 @@ public class FocusListnerEx extends JFrame implements ActionListener {
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
 		contentPane.add(btnCancel);
+		
+		btnNewButton = new JButton("set");
+		btnNewButton.addActionListener(this);
+		contentPane.add(btnNewButton);
 	}
 
 	
@@ -226,6 +231,9 @@ public class FocusListnerEx extends JFrame implements ActionListener {
 //   	frame.getTfSubj().requestFocus();
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			btnNewButtonActionPerformed(e);
+		}
 		if (e.getSource() == btnCancel) {
 			btnCancelActionPerformed(e);
 		}
@@ -234,21 +242,41 @@ public class FocusListnerEx extends JFrame implements ActionListener {
 		}
 	}
 	protected void btnOkActionPerformed(ActionEvent e) {
-		String a = tfName.getText();
-		int b= Integer.parseInt(tfNo.getText());
-		String c=tfDept.getText();
-		String d=tfSubj.getText();
+		Student student = getStudent();
 		//JOptionPane.showMessageDialog(null, "ddddd");
 		//Student student = new Student(tfName.getText(),Integer.parseInt(tfNo.getText()),tfDept.getText(),tfSubj.getText());
-		Student student = new Student(a,b,c,d);
-		//JOptionPane.showMessageDialog(null, student);
+		
+		JOptionPane.showMessageDialog(null, student.toString());
 		System.out.println(student.toString());
 	}
+	public Student getStudent() {
+		String a = tfName.getText().trim();
+		int b= Integer.parseInt(tfNo.getText().trim());
+		String c=tfDept.getText().trim();
+		String d=tfSubj.getText().trim();
+		Student student = new Student(a,b,c,d);
+		return student;
+	}
+	private void setStudent(Student std) {
+		tfName.setText(std.getName());
+		tfNo.setText(new String(std.getSno()+""));
+		tfDept.setText(std.getDept());
+		tfSubj.setText(std.getSubj());
+	}
+	
+	
 	protected void btnCancelActionPerformed(ActionEvent e) {
 		//sfName.setText("");
+		clearTf();
+	}
+	private void clearTf() {
 		tfName.setText("");
 		tfNo.setText("");
 		tfDept.setText("");
 		tfSubj.setText("");
+	}
+	protected void btnNewButtonActionPerformed(ActionEvent e) {
+		Student newStudent = new Student("이상원",1,"컴공","자바");
+		setStudent(newStudent);
 	}
 }
