@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
 
 public class JListEx extends JFrame implements ActionListener, ListSelectionListener {
 
@@ -37,8 +39,15 @@ public class JListEx extends JFrame implements ActionListener, ListSelectionList
 	private JButton btn22;
 	private JScrollPane scrollPane;
 	private JList imgList;
-	private HashMap<String, ImageIcon> imagess;
+	private JPanel p3;
+	private JTextField textField;
+	private JPanel panel_2;
+	private JScrollPane scrollPane_1;
+	private JList list22;
 	
+	private Vector<String> v= new Vector<String>();
+	private JList<String> nameList = new JList<String>();
+	private ArrayList<ImageIcon> imagess;
 
 
  	public static void main(String[] args) {
@@ -58,17 +67,10 @@ public class JListEx extends JFrame implements ActionListener, ListSelectionList
 		loadListData();
 		initialize();
 		
-		imgListHashmap();
+	
 	}
 
-	private void imgListHashmap() {
-		imagess = new HashMap<String, ImageIcon>();
-		String dirPath = System.getProperty("user.dir")+"\\img\\";
-		imagess.put("집", new ImageIcon(dirPath+"icon1.png"));
-		imagess.put("돋보기", new ImageIcon(dirPath+"icon1.png"));
-		imagess.put("와이파이", new ImageIcon(dirPath+"icon1.png"));
-		imagess.put("키", new ImageIcon(dirPath+"icon1.png"));
-	}
+
 
 	private void loadListData() {
 		listFruits = new ArrayList<String>();
@@ -81,6 +83,13 @@ public class JListEx extends JFrame implements ActionListener, ListSelectionList
 		listFruits.add("berry");
 		listFruits.add("strawberry");
 		listFruits.add("blackberry");
+		
+		imagess = new ArrayList<ImageIcon>();
+		String dirPath = System.getProperty("user.dir")+"\\img\\";
+		imagess.add(new ImageIcon(dirPath+"icon1.png"));
+		imagess.add(new ImageIcon(dirPath+"icon2.png"));
+		imagess.add(new ImageIcon(dirPath+"icon3.png"));
+		imagess.add(new ImageIcon(dirPath+"icon4.png"));
 	}
 	private void initialize() {
 		setTitle("JList & JComboBox");
@@ -122,6 +131,7 @@ public class JListEx extends JFrame implements ActionListener, ListSelectionList
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		btnSet2 = new JButton("확인");
+		btnSet2.addActionListener(this);
 		panel.add(btnSet2);
 		
 		btn22 = new JButton("선택하기");
@@ -130,12 +140,37 @@ public class JListEx extends JFrame implements ActionListener, ListSelectionList
 		scrollPane = new JScrollPane();
 		p2.add(scrollPane, BorderLayout.SOUTH);
 		
-		imgList = new JList();
+		imgList = new JList(new Vector<>(imagess));
 		p2.add(imgList, BorderLayout.CENTER);
+		
+		p3 = new JPanel();
+		contentPane.add(p3);
+		p3.setLayout(new BoxLayout(p3, BoxLayout.Y_AXIS));
+		
+		textField = new JTextField();
+		textField.addActionListener(this);
+		p3.add(textField);
+		textField.setColumns(10);
+		
+		panel_2 = new JPanel();
+		p3.add(panel_2);
+		panel_2.setLayout(new BorderLayout(0, 0));
+		
+		scrollPane_1 = new JScrollPane();
+		panel_2.add(scrollPane_1, BorderLayout.CENTER);
+		
+		list22 = new JList();
+		scrollPane_1.setViewportView(list22);
 		
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSet2) {
+			btnSet2ActionPerformed(e);
+		}
+		if (e.getSource() == textField) {
+			textFieldActionPerformed(e);
+		}
 		if (e.getSource() == btnNewButton_1) {
 			btnNewButton_1ActionPerformed(e);
 		}
@@ -160,5 +195,20 @@ public class JListEx extends JFrame implements ActionListener, ListSelectionList
 	protected void btnNewButton_1ActionPerformed(ActionEvent a) {
 	   strList.setSelectedIndex(5);
 	   
+	}
+	protected void textFieldActionPerformed(ActionEvent e) {
+	    String aa = textField.getText().trim();
+	    v.add(aa);
+	    
+	    list22.setListData(v);
+	    textField.setText("");
+	    
+	
+	}
+	protected void btnSet2ActionPerformed(ActionEvent e) {
+		
+		ImageIcon icon = imagess.get(imgList.getSelectedIndex());
+		String fullName = icon.getDescription();
+		JOptionPane.showMessageDialog(null, fullName.substring(fullName.lastIndexOf("\\")+1));
 	}
 }
