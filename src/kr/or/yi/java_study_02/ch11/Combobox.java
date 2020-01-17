@@ -201,19 +201,23 @@ public class Combobox extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(null, lblCon.getText());
 	}
 	protected void cmbStdActionPerformed(ActionEvent e) {
-	    System.out.println(cmbStd.getSelectedItem());
-	    String no = cmbStd.getSelectedItem().toString().substring(1, 3);
-	    String name = cmbStd.getSelectedItem().toString().substring(3, 7);
-	    String kor = cmbStd.getSelectedItem().toString().substring(7, 14);
-	    String eng = cmbStd.getSelectedItem().toString().substring(15, 19);
-	    String math = cmbStd.getSelectedItem().toString().substring(20,26 );
-	    String total = cmbStd.getSelectedItem().toString().substring(27, 30);
-	    String avg = cmbStd.getSelectedItem().toString().substring(31, 36);
+//	    System.out.println(cmbStd.getSelectedItem());
+//	    String no = cmbStd.getSelectedItem().toString().substring(1, 3);
+//	    String name = cmbStd.getSelectedItem().toString().substring(3, 7);
+//	    String kor = cmbStd.getSelectedItem().toString().substring(7, 14);
+//	    String eng = cmbStd.getSelectedItem().toString().substring(15, 19);
+//	    String math = cmbStd.getSelectedItem().toString().substring(20,26 );
+//	    String total = cmbStd.getSelectedItem().toString().substring(27, 30);
+//	    String avg = cmbStd.getSelectedItem().toString().substring(31, 36);
 //	    System.out.print(cmbStd.getSelectedItem().toString().charAt(31)+" ");
 //	    System.out.print(cmbStd.getSelectedItem().toString().charAt(32)+" ");
 //	    System.out.print(cmbStd.getSelectedItem().toString().charAt(33)+" ");
 	    
-		lblStdCon.setText(no+name+kor+" "+eng+" "+math+" "+total+" "+avg);
+//		lblStdCon.setText(no+name+kor+" "+eng+" "+math+" "+total+" "+avg);
+		
+		Student std = (Student)cmbStd.getSelectedItem();
+		lblStdCon.setText(std.getStdNo()+" "+std.getStdName()+" "+std.getKor()+" "+std.getEng()+" "+std.getMath()+" "+std.total()+" "+(String.format("%.2f", std.avg())));
+		
 		
 	}
 	protected void btnStdActionPerformed(ActionEvent e) {
